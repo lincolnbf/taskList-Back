@@ -34,12 +34,15 @@ public class TaskResource {
 		List<Task> list = taskService.findAll();		
 		return ResponseEntity.ok().body(list);
 	}	
+	
+	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Task> find(@PathVariable Integer id) {
 		Task obj = taskService.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
-
+	
+	@CrossOrigin
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity<Void> insert( @Valid @RequestBody TaskDTO objDto) {
 		Task obj = taskService.fromDTO(objDto);
@@ -48,6 +51,7 @@ public class TaskResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody TaskDTO objDto, @PathVariable Integer id){
 		Task obj = taskService.fromDTO(objDto);
@@ -56,6 +60,7 @@ public class TaskResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/finish/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> finalize(@PathVariable Integer id){			
 		taskService.finalize(id);
@@ -63,7 +68,7 @@ public class TaskResource {
 	}
 	
 	@CrossOrigin
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE	)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Task> delete(@PathVariable Integer id) {
 		
 		taskService.delete(id);
