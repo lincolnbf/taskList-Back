@@ -1,4 +1,5 @@
 package com.lincolnbf.supero.domain;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,30 +11,43 @@ import javax.persistence.Id;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Task implements Serializable{
+public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String titulo;
-	
+
 	private String status;
-	
+
 	private String descricao;
-	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataCriacao;
-	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataEdicao;
-	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataConclusao;
-	
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm")
+
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private Date dataExclusao;
+	
+	public Task() {
+
+	}
+	
+	public Task(Integer id, String titulo, String status, String descricao) {
+		super();		
+		this.id = id;
+		this.titulo = titulo;		
+		this.descricao = descricao;
+		this.status = "PENDENTE";
+		this.dataCriacao = new Date();
+	}
 
 	public Integer getId() {
 		return id;
@@ -99,5 +113,4 @@ public class Task implements Serializable{
 		this.dataExclusao = dataExclusao;
 	}
 
-	
 }
