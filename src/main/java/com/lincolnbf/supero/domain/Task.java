@@ -13,7 +13,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * 
+	 * Gerando o id de cada task usando o AutoIncrement do MySQL, e a declaração do restante dos campos
+	 * @author lincoln
+	 * 
+	 */	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -40,6 +46,12 @@ public class Task implements Serializable {
 
 	}
 	
+	/**
+	 * 
+	 * Contrutor para instanciação de um objeto da classe Task
+	 * @author lincoln
+	 * 
+	 */	
 	public Task(Integer id, String titulo, String status, String descricao) {
 		super();		
 		this.id = id;
@@ -48,7 +60,15 @@ public class Task implements Serializable {
 		this.status = "Pendente";
 		this.dataCriacao = new Date();
 	}
-
+	
+	/**
+	 * 
+	 * Getters e Setters de cada atributo
+	 * @return 
+	 * @author lincoln
+	 * 
+	 */	
+	
 	public Integer getId() {
 		return id;
 	}

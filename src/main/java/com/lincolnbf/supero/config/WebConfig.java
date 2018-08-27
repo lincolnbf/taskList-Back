@@ -8,7 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 public class WebConfig implements WebMvcConfigurer {
-
+	
+	/**
+	 * 
+	 * Método usado para permitir que o frontend consiga acessar as requisições
+	 * sem bloqueio 
+	 * @author lincoln
+	 * 
+	 */	
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**");
