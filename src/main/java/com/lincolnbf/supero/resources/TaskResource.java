@@ -1,17 +1,19 @@
 package com.lincolnbf.supero.resources;
 
 import java.net.URI;
-import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -26,6 +28,7 @@ public class TaskResource {
 	@Autowired
 	private TaskService taskService;
 	
+	@CrossOrigin
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Task>> findAll() {
 		List<Task> list = taskService.findAll();		
@@ -59,8 +62,10 @@ public class TaskResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@CrossOrigin
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE	)
 	public ResponseEntity<Task> delete(@PathVariable Integer id) {
+		
 		taskService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
