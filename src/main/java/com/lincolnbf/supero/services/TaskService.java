@@ -64,7 +64,7 @@ public class TaskService {
 	private void updateData(Task newObj, Task obj) {
 		newObj.setDescricao(obj.getDescricao());
 		newObj.setTitulo(obj.getTitulo());
-		newObj.setDataEdicao(obj.getDataEdicao());
+		newObj.setDataEdicao(new Date());
 	}	
 	
 	public Task fromDTO(TaskDTO objDTO) {
