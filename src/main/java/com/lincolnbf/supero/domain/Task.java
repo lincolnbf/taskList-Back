@@ -45,7 +45,7 @@ public class Task implements Serializable {
 		this.id = id;
 		this.titulo = titulo;		
 		this.descricao = descricao;
-		this.status = "PENDENTE";
+		this.status = "Pendente";
 		this.dataCriacao = new Date();
 	}
 

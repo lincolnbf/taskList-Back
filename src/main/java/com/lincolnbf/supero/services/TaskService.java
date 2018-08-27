@@ -49,6 +49,12 @@ public class TaskService {
 		Task newObj = find(id);
 		concluirTask(newObj);
 		repo.save(newObj);		
+	}	
+	
+	public void undoFinalize(Integer id) {
+		Task newObj = find(id);
+		desfazerTask(newObj);
+		repo.save(newObj);
 	}
 	
 	private void deleteData(Task newObj) {
@@ -59,6 +65,11 @@ public class TaskService {
 	private void concluirTask(Task newObj) {
 		newObj.setStatus("Concluido");
 		newObj.setDataConclusao(new Date());
+	}	
+	
+	private void desfazerTask(Task newObj) {
+		newObj.setStatus("Pendente");
+		newObj.setDataConclusao(new Date(0));
 	}	
 		
 	private void updateData(Task newObj, Task obj) {

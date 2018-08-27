@@ -68,6 +68,13 @@ public class TaskResource {
 	}
 	
 	@CrossOrigin
+	@RequestMapping(value="/undo/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> undo(@PathVariable Integer id){			
+		taskService.undoFinalize(id);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Task> delete(@PathVariable Integer id) {
 		
