@@ -1,5 +1,6 @@
 package com.lincolnbf.supero.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,17 +41,31 @@ public class TaskService {
 	}
 	
 	public void delete (Integer id) {
-		find(id);
-		try {
-			repo.deleteById(id);
-		}catch(DataIntegrityViolationException ex) {
-			ex.printStackTrace();
-		}		
+		Task newObj = find(id);
+		deleteData(newObj);
+		repo.save(newObj);
+	}	
+	
+	public void finalize(Integer id) {
+		Task newObj = find(id);
+		concluirTask(newObj);
+		repo.save(newObj);		
 	}
 	
+	private void deleteData(Task newObj) {
+		newObj.setStatus("Excluido");
+		newObj.setDataExclusao(new Date());		
+	}
+	
+	private void concluirTask(Task newObj) {
+		newObj.setStatus("Concluido");
+		newObj.setDataConclusao(new Date());
+	}	
+		
 	private void updateData(Task newObj, Task obj) {
 		newObj.setDescricao(obj.getDescricao());
 		newObj.setTitulo(obj.getTitulo());
+		newObj.setDataEdicao(obj.getDataEdicao());
 	}	
 	
 	public Task fromDTO(TaskDTO objDTO) {

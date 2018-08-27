@@ -1,6 +1,7 @@
 package com.lincolnbf.supero.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -21,6 +22,8 @@ public class TaskDTO implements Serializable{
 	@NotEmpty(message="Preencimento Obrigatório")
 	@Length(min=5, max=80, message="O tamanho deve ser entre 5 e 254 caracteres")
 	private String descricao;
+	
+	
 
 	public TaskDTO () {
 		
@@ -29,7 +32,7 @@ public class TaskDTO implements Serializable{
 	public TaskDTO(Task task) {
 		id = task.getId();
 		titulo = task.getTitulo();
-		descricao = task.getDescricao();		
+		descricao = task.getDescricao();			
 	}
 	
 	public Integer getId() {

@@ -1,6 +1,7 @@
 package com.lincolnbf.supero.resources;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -49,6 +50,12 @@ public class TaskResource {
 		Task obj = taskService.fromDTO(objDto);
 		obj.setId(id);		
 		obj = taskService.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value="/finish/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Void> finalize(@PathVariable Integer id){			
+		taskService.finalize(id);
 		return ResponseEntity.noContent().build();
 	}
 	
